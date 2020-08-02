@@ -16,7 +16,7 @@
 version: '3.0'
 services:
   policy-agent:
-    image: o-ran-sc/nonrtric-policy-agent:2.0.0-SNAPSHOT
+    image: nexus3.o-ran-sc.org:10004/o-ran-sc/nonrtric-policy-agent:2.0.1
     container_name: policy-agent
     networks:
       default:
@@ -114,3 +114,12 @@ services:
       options:
         max-size: "30m"
         max-file: "5"
+
+  callback-receiver:
+    networks:
+      - default
+    container_name: callback_reciever
+    image: callback-receiver:latest
+    ports:
+      - 8090:8090
+      - 8091:8091
