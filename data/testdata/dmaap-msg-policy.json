@@ -1,0 +1,20 @@
+[{
+    "apiVersion": "1.0",
+    "operation": "PUT",
+    "correlationId": "1596304565904621535",
+    "originatorId": "849e6c6b420",
+    "payload": {
+        "scope": {
+            "ueId": "ue3000",
+            "qosId": "qos3000"
+        },
+        "qosObjective": {
+            "priorityLevel": 3000
+        }
+    },
+    "requestId": "23343221",
+    "target": "policy-agent",
+    "timestamp": "2020-08-01 17:56:05.905035",
+    "type": "request",
+    "url": "/policy?id=0f7bb041e1584b1fa17e87520d70a3000&ric=ric1&service=service1&type=1"
+}]
