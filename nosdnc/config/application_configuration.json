@@ -23,7 +23,7 @@
           "dmaap_publisher":{
              "type":"message_router",
              "dmaap_info":{
-                "topic_url":"http://dmaap-mr:3904/events/A1-POLICY-AGENT"
+                "topic_url":"http://dmaap-mr:3904/events/A1-POLICY-AGENT-WRITE"
              }
           }
        },
@@ -31,7 +31,7 @@
           "dmaap_subscriber":{
              "type":"message_router",
              "dmaap_info":{
-                "topic_url":"http://dmaap-mr:3904/events/A1-POLICY-AGENT/users/policy-agent?timeout=15000&limit=100"
+                "topic_url":"http://dmaap-mr:3904/events/A1-POLICY-AGENT-READ/users/policy-agent?timeout=15000&limit=100"
              }
           }
        }
