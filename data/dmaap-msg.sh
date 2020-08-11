@@ -42,6 +42,14 @@ echo "dmaap-mr topics:"
 curl -skw " %{http_code}" $httpx://localhost:$dmaa_mr_port/topics/listAll
 echo -e "\n"
 
+echo "dmaap-mr create topic A1-POLICY-AGENT-READ:"
+curl -skw " %{http_code}" -X POST "$httpx://localhost:$dmaa_mr_port/topics/create" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"topicName\": \"A1-POLICY-AGENT-READ\",  \"topicDescription\": \"test topic\",  \"partitionCount\": 1,  \"replicationCount\": 1,  \"transactionEnabled\": \"false\"}"
+echo -e "\n"
+
+echo "dmaap-mr topics:"
+curl -skw " %{http_code}" $httpx://localhost:$dmaa_mr_port/topics/listAll
+echo -e "\n"
+
 echo "ric1 version:"
 curl -skw " %{http_code}" $httpx://localhost:$a1_sim_OSC_port/counter/interface
 echo -e "\n"
@@ -72,7 +80,7 @@ echo "create service 1 to policy agent:"
 curl -k -X POST -sw " %{http_code}" -H accept:application/json -H Content-Type:application/json "$httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/" --data-binary @testdata/dmaap-msg-service.json
 echo -e "\n"
 
-echo "create policy 2000 to ric1 with type1 and service1 via dmaa_mr:"
+echo "create policies to ric1 & ric2 with type1 and service1 via dmaa_mr:"
 curl -k -X POST -sw " %{http_code}" -H accept:application/json -H Content-Type:application/json "$httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/" --data-binary @testdata/dmaap-msg-policy.json
 echo -e "\n"
 
@@ -88,7 +96,7 @@ echo "policy numbers from ric2:"
 curl -skw " %{http_code}" $httpx://localhost:$a1_sim_STD_port/counter/num_instances
 echo -e "\n"
 
-echo "policy id 2000 from policy agent:"
+echo "get policy from policy agent:"
 curl -k -X POST -sw " %{http_code}" -H accept:application/json -H Content-Type:application/json "$httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/" --data-binary @testdata/dmaap-msg-status.json
 echo -e "\n"
 
