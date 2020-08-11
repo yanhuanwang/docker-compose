@@ -46,6 +46,10 @@ echo "dmaap-mr create topic A1-POLICY-AGENT-READ:"
 curl -skw " %{http_code}" -X POST "$httpx://localhost:$dmaa_mr_port/topics/create" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"topicName\": \"A1-POLICY-AGENT-READ\",  \"topicDescription\": \"test topic\",  \"partitionCount\": 1,  \"replicationCount\": 1,  \"transactionEnabled\": \"false\"}"
 echo -e "\n"
 
+echo "dmaap-mr create topic A1-POLICY-AGENT-WRITE:"
+curl -skw " %{http_code}" -X POST "$httpx://localhost:$dmaa_mr_port/topics/create" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"topicName\": \"A1-POLICY-AGENT-WRITE\",  \"topicDescription\": \"test topic\",  \"partitionCount\": 1,  \"replicationCount\": 1,  \"transactionEnabled\": \"false\"}"
+echo -e "\n"
+
 echo "dmaap-mr topics:"
 curl -skw " %{http_code}" $httpx://localhost:$dmaa_mr_port/topics/listAll
 echo -e "\n"
