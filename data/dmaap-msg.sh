@@ -80,30 +80,22 @@ for i in {1..12}; do
     fi
 done
 
-echo "create service 1 to policy agent:"
-curl -k -X POST -sw " %{http_code}" -H accept:application/json -H Content-Type:application/json "$httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/" --data-binary @testdata/dmaap-msg-service.json
+echo "create service 1 to policy agent via dmaap_mr:"
+curl -k -X POST -sw " %{http_code}" -H accept:application/json -H Content-Type:application/json "$httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/" --data-binary @testdata/dmaap-msg-service-create.json
 echo -e "\n"
 
 echo "create policies to ric1 & ric2 with type1 and service1 via dmaa_mr:"
-curl -k -X POST -sw " %{http_code}" -H accept:application/json -H Content-Type:application/json "$httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/" --data-binary @testdata/dmaap-msg-policy.json
+curl -k -X POST -sw " %{http_code}" -H accept:application/json -H Content-Type:application/json "$httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/" --data-binary @testdata/dmaap-msg-policy-create.json
 echo -e "\n"
 
 echo "policy numbers from ric1:"
 curl -skw " %{http_code}" $httpx://localhost:$a1_sim_OSC_port/counter/num_instances
 echo -e "\n"
 
-# echo "create policy 2100 to ric2 with service1 via dmaa_mr, no type:"
-# curl -k -X PUT -sw " %{http_code}" -H accept:application/json -H Content-Type:application/json "$httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/" --data-binary @testdata/policy.json
-# echo -e "\n"
-
 echo "policy numbers from ric2:"
 curl -skw " %{http_code}" $httpx://localhost:$a1_sim_STD_port/counter/num_instances
 echo -e "\n"
 
-echo "get policy from policy agent:"
-curl -k -X POST -sw " %{http_code}" -H accept:application/json -H Content-Type:application/json "$httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/" --data-binary @testdata/dmaap-msg-status.json
+echo "get policy from policy agent via dmaap_mr:"
+curl -k -X POST -sw " %{http_code}" -H accept:application/json -H Content-Type:application/json "$httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/" --data-binary @testdata/dmaap-msg-policy-get.json
 echo -e "\n"
-
-# echo "policy id 2100 from policy agent:"
-# curl -k -X GET -sw " %{http_code}" $httpx://localhost:$dmaa_mr_port/events/A1-POLICY-AGENT-READ/
-# echo -e "\n"
